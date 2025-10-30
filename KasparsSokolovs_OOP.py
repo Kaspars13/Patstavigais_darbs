@@ -18,15 +18,16 @@ def gravitacijas_speks():
         # Pārliecinās vai radius nav negatīvs skaitlis vai nulle
         if radius <= 0:
             # Ja rādisu ir negatīvs izmet kļūdu
-            messagebox.showerror('Kļuda: Rādius nevar būt nulle vai negatīvs!')
-        else:
-            # Gravitācijas spēka aprēķināšanas formula
-            F = G * masa1 * masa2 / radius**2
-            # Atjaunina rezultātu izmantojot config
-            rezultats.config(text = 'Rezultāts: {F} N')
-    # Izmet kļūdu ja nav ievadīti skaitļi
+            messagebox.showerror('Kļūda!', 'Rādius nevar būt negatīvs vai vienāds ar nulli')
+            return
+        # Gravitācijas spēka aprēķināšanas formula
+        F = G * masa1 * masa2 / radius**2
+        # Atjaunina rezultātu izmantojot config, izmantojot string formatēšanu rezultātu formatē ar 6 cipariem aiz nulles
+        rezultats.config(text = f'Rezultāts: {F:.6e} N', bg='black')
+            
+    # Izmet kļūdu ja nav ievadīti derīgi skaitļi
     except ValueError:
-        messagebox.showerror('Kļūda: Ievadi skaitļus!')
+        messagebox.showerror('Kļūda!', 'Ievadi derīgus skaitļus!')
 
 
     
@@ -37,27 +38,52 @@ root = tk.Tk()
 root.title("Gravitācijas spēka aprēķināšana")
 # Loga izmēri (WidthxHeight)
 root.geometry('700x700')
+# Fona krāsa
+root.config(bg='#351b61')
+# Ielādē attēlu
+attels = tk.PhotoImage(file='attēls.png')
 
-attels = tk.PhotoImage(file='attēls2.png')
-
-tk.Label(root, text='Ievadi pirmā objekta masu kilogramos').pack()
+tk.Label(root, text='Ievadi pirmā objekta masu kilogramos',
+         bg='black',
+         fg='white',
+         font=('Arial', 16)
+         ).pack(anchor='w', pady=5)
 #Izveido ievades lauciņu
-ievade1 = tk.Entry(root)
-ievade1.pack()
-tk.Label(root, text='Ievadi otrā objekta masu kilogramos').pack()
+ievade1 = tk.Entry(root, font=('Arial', 16))
+ievade1.pack(anchor='w', pady=5, fill='x')
+tk.Label(root, text='Ievadi otrā objekta masu kilogramos',
+         bg='black',
+         fg='white',
+         font=('Arial', 16)
+         ).pack(anchor='w')
 #Izveido ievades lauciņu
-ievade2 = tk.Entry(root)
-ievade2.pack()
-tk.Label(root, text='Ievadi objekta rādiusu').pack()
+ievade2 = tk.Entry(root, font=('Arial', 16))
+ievade2.pack(anchor='w', pady=5, fill='x')
+tk.Label(root, text='Ievadi objekta rādiusu',
+         bg='black',
+         fg='white',
+         font=('Arial', 16)
+         ).pack(anchor='w', pady=5)
 #Izveido ievades lauciņu
-ievade3 = tk.Entry(root)
-ievade3.pack()
+ievade3 = tk.Entry(root, font=('Arial',16))
+ievade3.pack(anchor='w', pady=5, fill='x')
 # Poga lai aprēķinātu gravitācijas spēku.
-tk.Button(root, text='Aprēķināt', command=gravitacijas_speks).pack()
-rezultats = tk.Label(root, text='Rezultāts: ').pack()
-
+tk.Button(root, text='Aprēķināt', command=gravitacijas_speks,
+          bg='black',
+          fg='white',
+          font=('Arial', 16)
+          ).pack()
+rezultats = tk.Label(root, text='',
+                     font=('Arial', 16),
+                     bg='#351b61',
+                     fg='white'
+                     )
+rezultats.pack()
+# Izveido attēlam konteineri un to ievieto
 attela_konteiners = tk.Label(root, image=attels)
+# Saglabā attēla saiti, lai tas nepazustu
 attela_konteiners.image = attels
+# Parāda attēlu logā
 attela_konteiners.pack()
 
 # Palaiž programmu
