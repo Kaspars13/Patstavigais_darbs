@@ -1,19 +1,19 @@
 import tkinter as tk
 from tkinter import messagebox
 
-# Aplikācijas kas aprēķina gravitācijas spēku starp diviem objektiem
+# Aplikācijas kas aprēķina gravitācijas spēku starp diviem objektiem.
 
-# Gravitācijas konstante, kur e ir skaitlis 10
+# Gravitācijas konstante, kur e ir skaitlis 10 skaitlis -11 ir tā pakāpe.
 G = 6.67e-11
 
-# Definē funkciju gravitācijas spēka aprēķināšanā
+# Definē funkciju gravitācijas spēka aprēķināšanai
 def gravitacijas_speks():
     try:
-        # Atlasa skaitli no pirmās ievades
+        # Atlasa skaitli no pirmās ievades un pārveido to uz float formātu
         masa1 = float(ievade1.get())
-        # Atlasa skaitli no otrās ievades
+        # Atlasa skaitli no otrās ievades un pārveido to uz float formātu
         masa2 = float(ievade2.get())
-        # Atlasa skaitli no trešās ievades
+        # Atlasa skaitli no trešās ievades un pārveido to uz float formātu
         radius = float(ievade3.get())
         # Pārliecinās vai radius nav negatīvs skaitlis vai nulle
         if radius <= 0:
@@ -25,7 +25,7 @@ def gravitacijas_speks():
         # Atjaunina rezultātu izmantojot config, izmantojot string formatēšanu rezultātu formatē ar 6 cipariem aiz nulles
         rezultats.config(text = f'Rezultāts: {F:.6e} N', bg='black')
             
-    # Izmet kļūdu ja nav ievadīti derīgi skaitļi
+    # Izmet kļūdu, ja nav ievadīti derīgi skaitļi
     except ValueError:
         messagebox.showerror('Kļūda!', 'Ievadi derīgus skaitļus!')
 
